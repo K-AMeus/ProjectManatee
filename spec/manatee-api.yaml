@@ -68,6 +68,21 @@ paths:
         '202':
           description: Application rejection was accepted and state transition was successful.
   /interviews:
+    get:
+      tags:
+        - Interview
+      summary: Retrieves all scheduled interviews.
+      description: Returns a list of all scheduled interviews.
+      operationId: getInterviews
+      responses:
+        '200':
+          description: A list of interviews.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Interview'
     post:
       tags:
         - Interview
@@ -154,12 +169,12 @@ components:
     ApplicationState:
       type: string
       enum:
-        - New
-        - Interview
-        - Offer
-        - Pre-onboard
-        - Hired
-        - Rejected
+        - NEW
+        - INTERVIEW
+        - OFFER
+        - PRE-ONBOARD
+        - HIRED
+        - REJECTED
 
     Interview:
       type: object
@@ -185,10 +200,10 @@ components:
         interviewType:
           type: string
           enum:
-            - informal
-            - technical
-            - behavioral
-            - final
+            - INFORMAL
+            - TECHNICAL
+            - BEHAVIORAL
+            - FINAL
           description: The type of the interview.
 
 

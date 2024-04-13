@@ -48,5 +48,5 @@ public class Interview {
 
     @NotNull
     @Enumerated(EnumType.STRING)
-    private InterviewType type;
+    private InterviewType interviewType;
 }
