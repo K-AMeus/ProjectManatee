@@ -68,6 +68,60 @@ paths:
         '202':
           description: Application rejection was accepted and state transition was successful.
 
+
+  /interviews:
+    post:
+      tags:
+        - Interview
+      summary: Schedules a new interview.
+      description: Schedules an interview for a specific application by providing the time, interviewer, and type of the interview.
+      requestBody:
+        description: Interview scheduling details.
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Interview'
+      responses:
+        '201':
+          description: Interview scheduled successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Interview'
+        '400':
+          description: Invalid input
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    description: Required field missing or invalid data format in request.
+        '404':
+          description: Application not found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    description: The application with the given ID does not exist in the database.
+        '500':
+          description: Unexpected server error
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    description: Sorry, something went wrong. A team of highly trained monkeys has been dispatched to deal with this situation. #Youtube's error 500 message reference :)
+
+
+
 components:
   schemas:
     Application:
@@ -107,6 +161,35 @@ components:
         - Pre-onboard
         - Hired
         - Rejected
+
+    Interview:
+      type: object
+      required:
+        - applicationId
+        - interviewerName
+        - interviewTime
+        - interviewType
+      properties:
+        applicationId:
+          type: integer
+          description: The ID of the application for which the interview is being scheduled.
+        interviewerName:
+          type: string
+          description: The name of the interviewer.
+        interviewTime:
+          type: string
+          format: date-time
+          description: The scheduled time for the interview.
+        interviewType:
+          type: string
+          enum:
+            - informal
+            - technical
+            - behavioral
+            - final
+          description: The type of the interview.
+
+
 
   parameters:
     ApplicationId:
