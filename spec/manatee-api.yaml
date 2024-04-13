@@ -67,13 +67,12 @@ paths:
       responses:
         '202':
           description: Application rejection was accepted and state transition was successful.
-
-
   /interviews:
     post:
       tags:
         - Interview
       summary: Schedules a new interview.
+      operationId: scheduleInterview
       description: Schedules an interview for a specific application by providing the time, interviewer, and type of the interview.
       requestBody:
         description: Interview scheduling details.
@@ -170,6 +169,9 @@ components:
         - interviewTime
         - interviewType
       properties:
+        id:
+          type: integer
+          description: The ID of the scheduled interview
         applicationId:
           type: integer
           description: The ID of the application for which the interview is being scheduled.
