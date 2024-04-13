@@ -37,6 +37,22 @@ public class ApplicationStateMachineImpl implements ApplicationStateMachine {
         return stateMachine;
     }
 
+
+    /**
+     * Handles the transition of an application to the INTERVIEW state.
+     * @param applicationId the ID of the application to transition.
+     * @return the state machine instance after processing the scheduling event.
+     */
+    @Override
+    @Transactional
+    public StateMachine<ApplicationState, ApplicationEvent> transitionToInterviewState(
+            Integer applicationId) {
+        val stateMachine = build(applicationId);
+        sendEvent(applicationId, stateMachine, ApplicationEvent.SCHEDULE);
+
+        return stateMachine;
+    }
+
     private void sendEvent(Integer applicationId,
                            StateMachine<ApplicationState, ApplicationEvent> stateMachine,
                            ApplicationEvent applicationEvent) {

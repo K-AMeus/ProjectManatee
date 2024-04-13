@@ -6,6 +6,8 @@ import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.factory.Mappers;
 
+import java.util.List;
+
 /**
  * Maps between Interview entity and InterviewDto data transfer object.
  */
@@ -18,4 +20,7 @@ public interface InterviewMapper {
 
     @Mapping(source = "application.id", target = "applicationId")
     InterviewDto toDto(Interview interview);
+
+    @Mapping(source = "application.id", target = "applicationId")
+    List<InterviewDto> toDtoList(List<Interview> interviews);
 }

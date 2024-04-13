@@ -60,7 +60,18 @@ public class ApplicationStateMachineConfig
                    .withExternal()
                    .source(ApplicationState.OFFER)
                    .target(ApplicationState.REJECTED)
-                   .event(ApplicationEvent.REJECT);
+                   .event(ApplicationEvent.REJECT)
+
+                    // Configures the transition from NEW to INTERVIEW when the SCHEDULE event is triggered.
+                    .and().withExternal()
+                    .source(ApplicationState.NEW)
+                    .target(ApplicationState.INTERVIEW)
+                    .event(ApplicationEvent.SCHEDULE);
+
+
+
+
+
 
     }
 
