@@ -29,11 +29,20 @@ public class ApplicationApiImpl implements ApplicationApi {
     private final ApplicationMapper applicationMapper;
     private final ApplicationService applicationService;
 
+
+
+    /**
+     * Endpoint to retrieve all applications with their interviews.
+     * Uses ApplicationService to retrieve the data and maps entities to DTOs.
+     * @return a ResponseEntity containing a list of ApplicationDto objects.
+     */
     @Override
     public ResponseEntity<List<ApplicationDto>> getApplications() {
-        val applications = applicationService.getApplications();
-        return ResponseEntity.ok(applicationMapper.entitiesToDtoList(applications));
+        val applications = applicationService.getApplicationsWithInterviews();
+        val applicationDtos = applicationMapper.entitiesToDtoList(applications);
+        return ResponseEntity.ok(applicationDtos);
     }
+
 
     @Override
     public ResponseEntity<ApplicationDto> addApplication(ApplicationDto applicationDto) {

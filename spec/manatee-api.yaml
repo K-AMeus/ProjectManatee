@@ -152,6 +152,10 @@ components:
         updatedOn:
           type: string
           format: date-time
+        interviews:
+          type: array
+          items:
+            $ref: '#/components/schemas/Interview'
 
     Candidate:
       type: object
