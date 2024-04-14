@@ -40,4 +40,5 @@ between 50-100 words.
 
 SUMMARY:
 Overall, the experience was a valuable learning experience for me. Although I have previously worked with Spring Boot, the approach of auto-generating DTOs from the manatee-api.yaml file was new for me. Initially, the absence of DTO classes was confusing, but at one point after compiling the project, classes appeared as if out of thin air! Additionally, building the front end was more time-consuming than anticipated, still having some functionalities that I would like to change.
-Front end of the Manatee application: https://github.com/K-AMeus/ProjectManateeFront
+Front end of the Manatee application: [Manatee Front-end Repository.](https://github.com/K-AMeus/ProjectManateeFront)
+
